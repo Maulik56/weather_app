@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:weather_demo/view/weather_screen.dart';
 
 import 'blocs/weather_bloc.dart';
 import 'services/location_service.dart';
 import 'services/weather_api.dart';
-import 'weather_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

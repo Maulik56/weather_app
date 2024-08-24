@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:weather_demo/blocs/weather_bloc.dart';
+import 'package:weather_demo/const/app_colors.dart';
+import 'package:weather_demo/const/app_strings.dart';
 import 'package:weather_demo/services/date_formate.dart';
 
 class WeatherScreen extends StatelessWidget {
   final double latitude;
   final double longitude;
 
-  WeatherScreen({Key? key, required this.latitude, required this.longitude}) : super(key: key);
+  const WeatherScreen({super.key, required this.latitude, required this.longitude});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,10 @@ class WeatherScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green.withOpacity(.8),
         centerTitle: true,
-        title: const Text(
-          'Weather Forecast',
-          style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w800),
+        title: Text(
+          AppStrings.weatherForecast,
+          style: const TextStyle(
+              color: AppColors.whiteColor, fontSize: 28, fontWeight: FontWeight.w800),
         ),
       ),
       body: BlocBuilder<WeatherBloc, WeatherState>(
@@ -58,11 +61,11 @@ class WeatherScreen extends StatelessWidget {
                         final item = state.weather[index];
                         final description = (item.weatherDescriptions.isNotEmpty)
                             ? item.weatherDescriptions.first.description
-                            : 'No description available';
+                            : AppStrings.noDescriptionAvailable;
 
                         return Container(
                           height: 70,
-                          margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                          margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -71,7 +74,7 @@ class WeatherScreen extends StatelessWidget {
                           child: ListTile(
                             style: ListTileStyle.list,
                             title: Text(
-                              formatDateTime(item.date ?? 'No date available'),
+                              formatDateTime(item.date ?? AppStrings.noDateAvailable),
                               style: const TextStyle(
                                   color: Colors.white, fontSize: 20, fontWeight: FontWeight.w800),
                             ),
